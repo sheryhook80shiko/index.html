@@ -134,14 +134,14 @@
         </div>
       </div>
 
-      <!-- Teacher Badge & Controls -->
+      <!-- Teacher Access Button & Sound Controls -->
       <div class="flex items-center gap-2 sm:gap-3">
-        <div class="hidden md:flex items-center gap-2 bg-white/10 px-3.5 py-1.5 rounded-xl border border-white/15">
-          <i class="fa-solid fa-chalkboard-user text-saudi-gold"></i>
-          <span class="text-sm font-medium text-emerald-50">إشراف: <strong class="text-saudi-gold">الأستاذ شريف شعبان</strong></span>
-        </div>
+        <button id="btn-teacher-access" onclick="enterTeacherDashboard()" class="px-3.5 py-2 rounded-xl bg-saudi-gold hover:bg-amber-400 text-saudi-navy font-display font-extrabold text-xs sm:text-sm shadow-md transition flex items-center gap-2">
+          <i class="fa-solid fa-user-tie"></i>
+          <span>دخول المعلم - أ/ شريف شعبان</span>
+        </button>
 
-        <button id="btn-home" onclick="confirmReturnHome()" class="hidden p-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white transition" title="العودة للقائمة الرئيسية">
+        <button id="btn-home" onclick="confirmReturnHome()" class="hidden p-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white transition" title="العودة لشاشة دخول الطالب">
           <i class="fa-solid fa-house"></i>
         </button>
 
@@ -156,112 +156,63 @@
   <!-- Main Content Container -->
   <main class="flex-grow max-w-7xl w-full mx-auto px-4 py-6 flex flex-col justify-center">
 
-    <!-- ==================== 1. ROLE SELECTION LANDING SCREEN ==================== -->
-    <section id="screen-landing" class="animate-pop max-w-5xl mx-auto w-full">
-      <div class="bg-white rounded-3xl shadow-xl border border-emerald-900/10 overflow-hidden">
+    <!-- ==================== 1. DIRECT STUDENT ENTRY SCREEN (NAME ONLY) ==================== -->
+    <section id="screen-landing" class="animate-pop max-w-2xl mx-auto w-full">
+      <div class="bg-white rounded-3xl shadow-2xl border-2 border-saudi-gold/60 overflow-hidden">
         <!-- Hero Banner -->
-        <div class="saudi-pattern-bar text-white p-6 sm:p-10 relative overflow-hidden">
+        <div class="saudi-pattern-bar text-white p-6 sm:p-8 text-center relative overflow-hidden">
           <div class="absolute -left-8 -bottom-8 opacity-10 text-9xl pointer-events-none">
             <i class="fa-solid fa-award"></i>
           </div>
-          <div class="relative z-10 max-w-3xl">
-            <div class="inline-flex items-center gap-2 bg-saudi-gold/20 border border-saudi-gold/50 text-saudi-goldLight px-4 py-1.5 rounded-full text-sm font-bold mb-4">
+          <div class="relative z-10">
+            <div class="inline-flex items-center gap-2 bg-saudi-gold/20 border border-saudi-gold/50 text-saudi-goldLight px-4 py-1 rounded-full text-xs sm:text-sm font-bold mb-3">
               <i class="fa-solid fa-star text-saudi-gold"></i>
-              <span>الوحدة الرابعة • الدرس الخامس عشر: التنمية الاجتماعية (رؤية 2030)</span>
+              <span>الدرس الخامس عشر: التنمية الاجتماعية • رؤية 2030</span>
             </div>
-            <h2 class="text-2xl sm:text-4xl font-black mb-3 leading-tight text-white">
-              مسابقة التنمية الاجتماعية التفاعلية
+            <h2 class="text-2xl sm:text-3xl font-black mb-2 leading-tight text-white">
+              أهلاً بكم في مسابقة التنمية الاجتماعية
             </h2>
-            <p class="text-emerald-100 text-sm sm:text-lg leading-relaxed">
-              منصة تنافسية مباشرة للصف الثالث المتوسط (المنهج السعودي) بإشراف <strong class="text-saudi-gold">الأستاذ شريف شعبان</strong>. شارك رابط الحصة مع الطلاب ليتنافسوا من أجهزتهم وتتابع إجاباتهم وترتيبهم لحظة بلحظة.
+            <p class="text-emerald-100 text-sm sm:text-base">
+              إشراف وتقديم: <strong class="text-saudi-gold">الأستاذ شريف شعبان</strong>
             </p>
           </div>
         </div>
 
-        <!-- Role Cards -->
-        <div class="p-6 sm:p-8 grid grid-cols-1 md:grid-cols-2 gap-6">
-          
-          <!-- Student Join Card (Shown first on mobile if ?code= is present) -->
-          <div id="student-entry-card" class="order-1 md:order-2 rounded-3xl border-2 border-saudi-gold/70 bg-gradient-to-b from-saudi-goldLight/50 to-white p-6 sm:p-7 flex flex-col justify-between shadow-sm hover:shadow-xl transition">
-            <div>
-              <div class="flex items-center justify-between mb-4">
-                <div class="w-14 h-14 rounded-2xl bg-saudi-gold text-saudi-navy flex items-center justify-center text-2xl shadow-md">
-                  <i class="fa-solid fa-user-graduate"></i>
-                </div>
-                <span class="bg-saudi-goldLight text-saudi-goldDark border border-saudi-gold text-xs font-extrabold px-3 py-1 rounded-full">
-                  دخول الطالب (الانضمام للمسابقة)
-                </span>
-              </div>
-              <h3 class="text-2xl font-black text-slate-900 mb-2">
-                دخول الطالب للمسابقة
-              </h3>
-              <p id="student-join-subtitle" class="text-sm text-slate-600 leading-relaxed mb-4">
-                أدخل رمز الحصة الذي أرسله لك الأستاذ شريف شعبان، واكتب اسمك الثلاثي وفصلك للمشاركة في التحدي.
-              </p>
-
-              <div class="space-y-3 mb-5">
-                <div>
-                  <label class="block text-xs font-extrabold text-slate-700 mb-1">رمز الحصة (6 أحرف / أرقام):</label>
-                  <input type="text" id="input-room-code" maxlength="6" placeholder="مثال: KSA482" class="w-full px-4 py-2.5 rounded-xl border-2 border-slate-300 focus:border-saudi-dark outline-none text-center font-display font-black text-xl tracking-widest uppercase bg-white" />
-                </div>
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
-                  <div class="sm:col-span-2">
-                    <label class="block text-xs font-extrabold text-slate-700 mb-1">الاسم الثلاثي للطالب:</label>
-                    <input type="text" id="input-student-name" placeholder="اكتب اسمك الثلاثي هنا..." class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:border-saudi-dark outline-none text-sm font-bold bg-white" />
-                  </div>
-                  <div>
-                    <label class="block text-xs font-extrabold text-slate-700 mb-1">الفصل:</label>
-                    <input type="text" id="input-student-class" placeholder="مثال: 3/أ" value="3/أ" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:border-saudi-dark outline-none text-sm font-bold text-center bg-white" />
-                  </div>
-                </div>
-              </div>
+        <!-- Single-Field Student Login Form -->
+        <div class="p-6 sm:p-9 space-y-6">
+          <div class="text-center">
+            <div class="w-16 h-16 mx-auto rounded-2xl bg-saudi-soft text-saudi-dark border-2 border-saudi-gold flex items-center justify-center text-3xl mb-3 shadow-sm">
+              <i class="fa-solid fa-user-graduate"></i>
             </div>
-
-            <button id="btn-join-room" onclick="joinStudentSession()" class="w-full py-4 px-6 rounded-2xl bg-saudi-gold hover:bg-amber-400 text-saudi-navy font-display font-extrabold text-lg shadow-lg transition flex items-center justify-center gap-3">
-              <span>انضمام إلى الحصة الآن</span>
-              <i class="fa-solid fa-arrow-left"></i>
-            </button>
+            <h3 class="text-xl sm:text-2xl font-black text-slate-900">
+              سجّل اسمك للدخول الفوري إلى المسابقة
+            </h3>
+            <p class="text-xs sm:text-sm text-slate-500 mt-1">
+              اكتب اسمك الثلاثي في الخانة أدناه ثم اضغط على زر البدء مباشرة
+            </p>
           </div>
 
-          <!-- Teacher Dashboard Card -->
-          <div id="teacher-entry-card" class="order-2 md:order-1 rounded-3xl border-2 border-saudi-dark bg-gradient-to-b from-saudi-soft/60 to-white p-6 sm:p-7 flex flex-col justify-between shadow-sm hover:shadow-xl transition">
-            <div>
-              <div class="flex items-center justify-between mb-4">
-                <div class="w-14 h-14 rounded-2xl bg-saudi-navy text-saudi-gold flex items-center justify-center text-2xl shadow-md">
-                  <i class="fa-solid fa-user-tie"></i>
-                </div>
-                <span class="bg-saudi-navy text-saudi-goldLight text-xs font-extrabold px-3 py-1 rounded-full">
-                  لوحة القيادة والتحكم
-                </span>
-              </div>
-              <h3 class="text-2xl font-black text-saudi-navy mb-2">
-                دخول المعلم (التحكم وإدارة الحصة)
-              </h3>
-              <p class="text-sm text-slate-600 leading-relaxed mb-4">
-                أنشئ جلسة حصة مباشرة برمز مكون من 6 أحرف، واحصل على رابط مباشر لإرساله للطلاب عبر كلاسيرا أو الواتساب أو التيمز.
-              </p>
-
-              <!-- Re-enter existing session option -->
-              <div class="bg-white/90 border border-slate-200 rounded-2xl p-3 mb-5">
-                <label class="block text-[11px] font-extrabold text-slate-600 mb-1.5">
-                  <i class="fa-solid fa-rotate-right text-saudi-dark ml-1"></i>
-                  هل لديك حصة قائمة وتريد العودة لإدارتها؟ (اختياري):
-                </label>
-                <div class="flex gap-2">
-                  <input type="text" id="input-teacher-existing-code" maxlength="6" placeholder="رمز الحصة السابقة" class="flex-1 px-3 py-2 rounded-xl border border-slate-300 focus:border-saudi-dark outline-none text-center font-display font-bold text-sm uppercase" />
-                  <button onclick="rejoinTeacherSession()" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-900 text-white text-xs font-extrabold transition shrink-0">
-                    استعادة الحصة
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <button id="btn-create-room" onclick="createTeacherSession()" class="w-full py-4 px-6 rounded-2xl bg-gradient-to-l from-saudi-navy to-saudi-dark hover:from-saudi-dark hover:to-saudi-light text-white font-display font-extrabold text-lg shadow-lg border-2 border-saudi-gold transition flex items-center justify-center gap-3">
-              <i class="fa-solid fa-plus-circle text-saudi-gold"></i>
-              <span>إنشاء حصة جديدة والحصول على الرابط</span>
-            </button>
+          <div>
+            <label for="input-student-name" class="block text-sm font-extrabold text-slate-800 mb-2">
+              الاسم الثلاثي للطالب:
+            </label>
+            <input
+              type="text"
+              id="input-student-name"
+              placeholder="مثال: عبدالعزيز محمد القحطاني"
+              onkeydown="if(event.key==='Enter') joinStudentSession()"
+              class="w-full px-5 py-4 rounded-2xl border-2 border-slate-300 focus:border-saudi-dark focus:ring-4 focus:ring-saudi-dark/10 outline-none text-base sm:text-lg font-bold text-slate-900 bg-saudi-cream/50 transition"
+            />
           </div>
 
+          <button
+            id="btn-join-room"
+            onclick="joinStudentSession()"
+            class="animate-pulse-gold w-full py-4 px-6 rounded-2xl bg-gradient-to-l from-saudi-navy to-saudi-dark hover:from-saudi-dark hover:to-saudi-light text-white font-display font-extrabold text-lg sm:text-xl shadow-xl border-2 border-saudi-gold transition flex items-center justify-center gap-3"
+          >
+            <span>ابدأ المسابقة الآن</span>
+            <i class="fa-solid fa-arrow-left text-saudi-gold"></i>
+          </button>
         </div>
       </div>
     </section>
@@ -269,69 +220,49 @@
     <!-- ==================== 2. TEACHER CONTROL DASHBOARD ==================== -->
     <section id="screen-teacher" class="hidden space-y-5 animate-pop">
       
-      <!-- Top Control Strip: Room Code, Direct Share Link & Master Controls -->
+      <!-- Top Control Strip -->
       <div class="bg-white rounded-3xl shadow-md border border-emerald-900/10 p-5">
         <div class="flex flex-wrap items-center justify-between gap-4">
-          <!-- Room Code & Direct Share Box -->
-          <div class="flex flex-wrap items-center gap-4 bg-saudi-soft border-2 border-saudi-dark/30 px-5 py-3 rounded-2xl">
-            <div>
-              <span class="text-xs font-bold text-saudi-dark block">رمز الحصة المباشر:</span>
-              <span id="teacher-room-code" class="font-display font-black text-3xl tracking-widest text-saudi-navy select-all">------</span>
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 rounded-2xl bg-saudi-navy text-saudi-gold flex items-center justify-center text-xl shadow">
+              <i class="fa-solid fa-sliders"></i>
             </div>
-            <div class="flex flex-wrap gap-2">
-              <button onclick="copyRoomCode()" class="px-3.5 py-2 rounded-xl bg-saudi-navy hover:bg-slate-800 text-white text-xs font-extrabold transition flex items-center gap-1.5 shadow-sm">
-                <i class="fa-solid fa-copy"></i>
-                <span>نسخ الرمز</span>
-              </button>
-              <button onclick="openShareLinkModal(true)" class="px-4 py-2 rounded-xl bg-saudi-gold hover:bg-amber-400 text-saudi-navy text-xs font-extrabold transition flex items-center gap-1.5 shadow-sm">
-                <i class="fa-solid fa-share-nodes"></i>
-                <span>نسخ رابط الطلاب المباشر</span>
-              </button>
+            <div>
+              <span class="text-xs font-extrabold text-saudi-primary block">لوحة القيادة والتحكم المباشر</span>
+              <h2 class="font-display font-black text-lg sm:text-xl text-slate-900">
+                إدارة المسابقة — الأستاذ شريف شعبان
+              </h2>
             </div>
           </div>
 
-          <!-- Connected Count, Demo Simulator & CSV Export -->
+          <!-- Action Buttons -->
           <div class="flex flex-wrap items-center gap-2.5">
             <div class="px-3.5 py-2 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-900 text-xs font-extrabold flex items-center gap-1.5">
               <i class="fa-solid fa-users text-saudi-primary"></i>
               <span>الطلاب المتصلون: <strong id="top-connected-count" class="text-sm">0</strong></span>
             </div>
 
-            <button onclick="openCloudSetupModal()" id="btn-cloud-setup" class="px-4 py-2.5 rounded-xl bg-sky-50 hover:bg-sky-100 text-sky-900 border border-sky-300 text-xs font-extrabold transition flex items-center gap-2">
+            <button onclick="openCloudSetupModal()" id="btn-cloud-setup" class="px-3.5 py-2.5 rounded-xl bg-sky-50 hover:bg-sky-100 text-sky-900 border border-sky-300 text-xs font-extrabold transition flex items-center gap-1.5">
               <i class="fa-solid fa-cloud-arrow-up text-sky-600"></i>
-              <span id="cloud-setup-btn-label">إعداد الربط السحابي (Zoom)</span>
+              <span>إعداد الربط السحابي (Zoom)</span>
             </button>
 
-            <button onclick="simulateDemoStudents()" id="btn-demo-students" class="px-4 py-2.5 rounded-xl bg-amber-50 hover:bg-amber-100 text-saudi-goldDark border border-saudi-gold text-xs font-extrabold transition flex items-center gap-2">
+            <button onclick="simulateDemoStudents()" id="btn-demo-students" class="px-3.5 py-2.5 rounded-xl bg-amber-50 hover:bg-amber-100 text-saudi-goldDark border border-saudi-gold text-xs font-extrabold transition flex items-center gap-1.5">
               <i class="fa-solid fa-robot"></i>
-              <span>إضافة طلاب تجريبيين (محاكاة)</span>
+              <span>إضافة طلاب تجريبيين</span>
             </button>
 
-            <button onclick="exportResultsCSV()" class="px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-extrabold transition flex items-center gap-2">
+            <button onclick="exportResultsCSV()" class="px-3.5 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-extrabold transition flex items-center gap-1.5">
               <i class="fa-solid fa-file-csv text-saudi-dark"></i>
-              <span>تصدير الدرجات (CSV)</span>
+              <span>تصدير CSV</span>
+            </button>
+
+            <button onclick="teacherResetSession()" class="px-3.5 py-2.5 rounded-xl bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 text-xs font-extrabold transition flex items-center gap-1.5">
+              <i class="fa-solid fa-rotate-left"></i>
+              <span>إعادة ضبط المسابقة (Reset)</span>
             </button>
           </div>
         </div>
-      </div>
-
-      <!-- Cloud & Zoom Readiness Alert Banner -->
-      <div id="zoom-readiness-banner" class="bg-amber-50 border-2 border-amber-300 rounded-2xl p-4 flex flex-wrap items-center justify-between gap-3">
-        <div class="flex items-start gap-3">
-          <div class="w-10 h-10 rounded-xl bg-amber-500 text-white flex items-center justify-center text-lg shrink-0 mt-0.5">
-            <i class="fa-solid fa-triangle-exclamation"></i>
-          </div>
-          <div>
-            <h4 class="font-display font-extrabold text-sm text-amber-950">تنبيه هام قبل إرسال الرابط لطلابك عبر Zoom:</h4>
-            <p id="zoom-readiness-text" class="text-xs text-amber-900 leading-relaxed mt-0.5">
-              لضمان فتح اللعبة عند الطلاب بدون خطأ (Error) وظهور إجاباتهم لديك مباشرة: اربط قاعدة البيانات السحابية المجانية ثم ارفع هذا الملف على موقع استضافة مجاني (مثل Tiiny.host) لإرسال رابطه العام للطلاب.
-            </p>
-          </div>
-        </div>
-        <button onclick="openCloudSetupModal()" class="px-4 py-2.5 rounded-xl bg-saudi-navy hover:bg-slate-800 text-saudi-gold text-xs font-extrabold transition shrink-0 flex items-center gap-2 shadow">
-          <i class="fa-solid fa-wand-magic-sparkles"></i>
-          <span>خطوات النشر والربط لـ Zoom</span>
-        </button>
       </div>
 
       <!-- TEACHER LOBBY VIEW (Shown when status === 'lobby') -->
@@ -339,31 +270,24 @@
         <div class="flex flex-wrap items-center justify-between gap-4 pb-5 border-b border-slate-100">
           <div>
             <span class="text-xs font-extrabold text-saudi-primary bg-saudi-soft px-3 py-1 rounded-full">غرفة الانتظار المباشرة</span>
-            <h2 class="text-2xl font-black text-slate-900 mt-1.5">
-              الطلاب المنضمون للحصة (<span id="lobby-student-count" class="text-saudi-dark">0</span>)
-            </h2>
-            <p class="text-sm text-slate-500">انسخ رابط الطلاب المباشر وأرسله في الدردشة أو كلاسيرا، وعند انضمامهم اضغط على «بدء المسابقة».</p>
+            <h3 class="text-2xl font-black text-slate-900 mt-1.5">
+              الطلاب المنضمون بأسمائهم (<span id="lobby-student-count" class="text-saudi-dark">0</span>)
+            </h3>
+            <p class="text-sm text-slate-500">يدخل الطلاب مباشرة بكتابة أسمائهم فقط دون أي رمز حصة. اضغط على «بدء المسابقة» عند الجاهزية.</p>
           </div>
 
-          <div class="flex flex-wrap items-center gap-3">
-            <button onclick="openShareLinkModal(true)" class="px-5 py-4 rounded-2xl bg-saudi-goldLight hover:bg-amber-100 text-saudi-goldDark border-2 border-saudi-gold font-display font-extrabold text-sm transition flex items-center gap-2">
-              <i class="fa-solid fa-link"></i>
-              <span>عرض ونسخ رابط الدعوة</span>
-            </button>
-
-            <button onclick="teacherStartGame()" id="btn-teacher-start" class="animate-pulse-gold px-8 py-4 rounded-2xl bg-gradient-to-l from-saudi-navy to-saudi-dark hover:from-saudi-dark hover:to-saudi-light text-white font-display font-extrabold text-lg shadow-xl border-2 border-saudi-gold transition flex items-center gap-3">
-              <i class="fa-solid fa-play text-saudi-gold"></i>
-              <span>بدء المسابقة / السؤال الأول</span>
-            </button>
-          </div>
+          <button onclick="teacherStartGame()" id="btn-teacher-start" class="animate-pulse-gold px-8 py-4 rounded-2xl bg-gradient-to-l from-saudi-navy to-saudi-dark hover:from-saudi-dark hover:to-saudi-light text-white font-display font-extrabold text-lg shadow-xl border-2 border-saudi-gold transition flex items-center gap-3">
+            <i class="fa-solid fa-play text-saudi-gold"></i>
+            <span>بدء المسابقة / السؤال الأول</span>
+          </button>
         </div>
 
         <!-- Connected Students Grid -->
         <div id="lobby-students-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5 mt-6 min-h-[160px]">
           <div class="col-span-full flex flex-col items-center justify-center py-10 text-slate-400 border-2 border-dashed border-slate-200 rounded-2xl">
             <i class="fa-solid fa-users text-4xl mb-2 text-slate-300"></i>
-            <p class="font-bold text-sm">في انتظار انضمام الطلاب عبر الرابط المباشر أو رمز الحصة...</p>
-            <p class="text-xs mt-1">يمكنك الضغط على «إضافة طلاب تجريبيين (محاكاة)» بالأعلى لمعاينة سير الحصة فوراً</p>
+            <p class="font-bold text-sm">في انتظار دخول الطلاب بأسمائهم...</p>
+            <p class="text-xs mt-1">يمكنك الضغط على «إضافة طلاب تجريبيين» بالأعلى لمعاينة تفاعل اللوحة فوراً</p>
           </div>
         </div>
       </div>
@@ -461,7 +385,7 @@
                   </tr>
                 </thead>
                 <tbody id="live-answers-tbody" class="divide-y divide-slate-100 text-xs sm:text-sm">
-                  <!-- Live rows populated via Firestore onSnapshot -->
+                  <!-- Live rows populated dynamically -->
                 </tbody>
               </table>
             </div>
@@ -506,7 +430,7 @@
           </div>
           <div>
             <span id="s-student-name" class="font-display font-extrabold text-base text-slate-900 block">اسم الطالب</span>
-            <span class="text-xs text-slate-500">رمز الحصة: <strong id="s-room-code" class="text-saudi-dark">------</strong> • الفصل: <strong id="s-student-class">3/أ</strong></span>
+            <span class="text-xs text-slate-500">مسابقة التنمية الاجتماعية • إشراف أ/ شريف شعبان</span>
           </div>
         </div>
 
@@ -528,7 +452,7 @@
           <i class="fa-solid fa-hourglass-half"></i>
         </div>
         <span class="inline-block bg-saudi-goldLight text-saudi-goldDark text-xs font-extrabold px-3.5 py-1 rounded-full mb-2">
-          تم الانضمام للحصة بنجاح!
+          تم تسجيل اسمك بنجاح!
         </span>
         <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mb-2">
           أهلاً بك يا بطل في مسابقة التنمية الاجتماعية
@@ -538,7 +462,7 @@
         </p>
         <div class="inline-flex items-center gap-3 bg-slate-100 px-5 py-2.5 rounded-xl text-xs font-extrabold text-slate-700">
           <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping"></span>
-          <span>زملاؤك المتصلون في الحصة: <strong id="s-lobby-peers-count" class="text-saudi-dark text-sm">1</strong></span>
+          <span>الطلاب المتصلون الآن: <strong id="s-lobby-peers-count" class="text-saudi-dark text-sm">1</strong></span>
         </div>
       </div>
 
@@ -613,62 +537,6 @@
 
   </main>
 
-  <!-- Direct Share Link Modal for Teacher (Classera / WhatsApp / Teams) -->
-  <div id="share-link-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
-    <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-7 shadow-2xl border-2 border-saudi-gold animate-pop">
-      <div class="flex items-center justify-between pb-3 border-b border-slate-100 mb-4">
-        <div class="flex items-center gap-3">
-          <div class="w-11 h-11 rounded-2xl bg-saudi-goldLight text-saudi-goldDark flex items-center justify-center text-xl">
-            <i class="fa-solid fa-share-nodes"></i>
-          </div>
-          <div>
-            <h3 class="font-display font-extrabold text-lg text-slate-900">رابط دخول الطلاب المباشر</h3>
-            <p class="text-xs text-slate-500">انسخ الرابط وأرسله للطلاب في دردشة Zoom أو الواتساب</p>
-          </div>
-        </div>
-        <button onclick="closeShareLinkModal()" class="text-slate-400 hover:text-slate-700 p-2 rounded-xl">
-          <i class="fa-solid fa-xmark text-lg"></i>
-        </button>
-      </div>
-
-      <div class="space-y-4">
-        <!-- Warning if still inside internal preview iframe -->
-        <div id="modal-local-preview-warning" class="hidden bg-rose-50 border border-rose-300 rounded-2xl p-3.5 text-xs text-rose-900 leading-relaxed">
-          <strong class="block font-extrabold text-rose-950 mb-1">
-            <i class="fa-solid fa-circle-exclamation ml-1"></i>
-            تنبيه: أنت الآن داخل بيئة المعاينة المؤقتة!
-          </strong>
-          الرابط الظاهر أدناه هو رابط داخلي خاص بحسابك ولن يعمل إذا أرسلته للطلاب في Zoom (سيعطيهم Error). اضغط على <strong>«خطوات النشر والربط لـ Zoom»</strong> لرفع الملف واستخراج رابط عام حقيقي.
-        </div>
-
-        <div class="bg-saudi-soft border border-saudi-dark/20 rounded-2xl p-4 text-center">
-          <span class="text-xs font-bold text-saudi-dark block mb-1">رمز الحصة السريع:</span>
-          <span id="modal-share-code" class="font-display font-black text-3xl tracking-widest text-saudi-navy select-all">------</span>
-        </div>
-
-        <div>
-          <label class="block text-xs font-extrabold text-slate-700 mb-1.5">الرابط المباشر (يفتح شاشة الطالب برمز الحصة تلقائياً):</label>
-          <div class="flex gap-2">
-            <input type="text" id="modal-share-url-input" readonly dir="ltr" class="flex-1 px-3.5 py-2.5 rounded-xl border border-slate-300 bg-slate-50 text-xs font-mono text-slate-800 select-all outline-none" />
-            <button onclick="copyInviteLinkFromModal()" class="px-4 py-2.5 rounded-xl bg-saudi-dark hover:bg-saudi-deep text-white text-xs font-extrabold transition flex items-center gap-1.5 shrink-0">
-              <i class="fa-solid fa-copy"></i>
-              <span>نسخ الرابط</span>
-            </button>
-          </div>
-        </div>
-
-        <div>
-          <label class="block text-xs font-extrabold text-slate-700 mb-1.5">رسالة دعوة جاهزة للإرسال في دردشة Zoom:</label>
-          <textarea id="modal-share-message" rows="3" readonly class="w-full p-3 rounded-xl border border-slate-200 bg-saudi-cream text-xs font-medium text-slate-700 leading-relaxed outline-none"></textarea>
-          <button onclick="copyFullInviteMessage()" class="mt-2 w-full py-3 rounded-xl bg-saudi-gold hover:bg-amber-400 text-saudi-navy font-display font-extrabold text-sm transition flex items-center justify-center gap-2 shadow">
-            <i class="fa-solid fa-paper-plane"></i>
-            <span>نسخ رسالة الدعوة كاملة مع الرابط</span>
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <!-- Cloud Setup & Zoom Publishing Guide Modal -->
   <div id="cloud-setup-modal" class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm hidden items-center justify-center z-50 p-4 overflow-y-auto">
     <div class="bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-7 shadow-2xl border-2 border-saudi-dark animate-pop my-auto">
@@ -678,8 +546,8 @@
             <i class="fa-solid fa-cloud"></i>
           </div>
           <div>
-            <h3 class="font-display font-extrabold text-lg text-slate-900">تفعيل الربط السحابي ونشر الرابط لطلاب Zoom</h3>
-            <p class="text-xs text-slate-500">خطوتان بسيطتان ليعمل الرابط على جميع أجهزة الطلاب عن بُعد</p>
+            <h3 class="font-display font-extrabold text-lg text-slate-900">إعداد الربط السحابي للعمل عن بُعد عبر Zoom</h3>
+            <p class="text-xs text-slate-500">يرتبط جميع الطلاب تلقائياً بنفس الحصة الموحدة دون أي رمز</p>
           </div>
         </div>
         <button onclick="closeCloudSetupModal()" class="text-slate-400 hover:text-slate-700 p-2 rounded-xl">
@@ -688,32 +556,19 @@
       </div>
 
       <div class="space-y-4 text-xs sm:text-sm text-slate-700">
-        <!-- Step 1: Firebase Config -->
         <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4 space-y-2.5">
           <div class="flex items-center justify-between">
-            <span class="font-display font-extrabold text-saudi-navy text-sm">الخطوة 1: لصق إعدادات قاعدة البيانات السحابية (Firebase)</span>
-            <span id="cloud-config-status-badge" class="text-[11px] font-extrabold bg-amber-100 text-amber-900 px-2.5 py-0.5 rounded-full">غير مربوط حالياً</span>
+            <span class="font-display font-extrabold text-saudi-navy text-sm">لصق إعدادات Firebase Config لتفعيل المزامنة السحابية:</span>
+            <span id="cloud-config-status-badge" class="text-[11px] font-extrabold bg-amber-100 text-amber-900 px-2.5 py-0.5 rounded-full">وضع محلي</span>
           </div>
           <p class="text-xs text-slate-600 leading-relaxed">
-            افتح <a href="https://console.firebase.google.com" target="_blank" class="text-sky-700 underline font-bold">console.firebase.google.com</a> ◀ أنشئ مشروعاً مجانياً ◀ فعّل <strong>Authentication (Anonymous)</strong> و <strong>Firestore Database</strong> ◀ انسخ كود <code>firebaseConfig</code> والصقه هنا:
+            افتح <a href="https://console.firebase.google.com" target="_blank" class="text-sky-700 underline font-bold">console.firebase.google.com</a> ◀ أنشئ مشروعاً مجانياً ◀ فعّل <strong>Authentication (Anonymous)</strong> و <strong>Firestore Database</strong> ◀ انسخ كود <code>firebaseConfig</code> والصقه هنا ثم حمّل الملف الجاهز لرفعه على GitHub:
           </p>
           <textarea id="input-custom-firebase-config" dir="ltr" rows="4" placeholder='{"apiKey": "AIzaSy...", "authDomain": "...", "projectId": "...", "storageBucket": "...", "messagingSenderId": "...", "appId": "..."}' class="w-full p-3 rounded-xl border border-slate-300 bg-white font-mono text-xs text-slate-800 outline-none focus:border-saudi-dark"></textarea>
-          <div class="flex flex-wrap gap-2">
-            <button onclick="saveAndDownloadConfiguredHTML()" class="flex-1 py-2.5 px-4 rounded-xl bg-saudi-dark hover:bg-saudi-deep text-white font-display font-extrabold text-xs transition flex items-center justify-center gap-2 shadow">
-              <i class="fa-solid fa-download"></i>
-              <span>حفظ الإعدادات وتنزيل ملف اللعبة الجاهز (.html)</span>
-            </button>
-          </div>
-        </div>
-
-        <!-- Step 2: Public Hosting -->
-        <div class="bg-saudi-soft/70 border border-saudi-dark/20 rounded-2xl p-4 space-y-2">
-          <span class="font-display font-extrabold text-saudi-dark text-sm block">الخطوة 2: رفع الملف للحصول على رابط عام لإرساله في Zoom</span>
-          <ol class="list-decimal list-inside space-y-1.5 text-xs text-slate-700 leading-relaxed">
-            <li>بعد تنزيل الملف الجاهز من الخطوة السابقة، افتح موقع الاستضافة المجاني السريع: <a href="https://tiiny.host" target="_blank" class="text-saudi-dark underline font-extrabold">Tiiny.host</a> أو <a href="https://app.netlify.com/drop" target="_blank" class="text-saudi-dark underline font-extrabold">Netlify Drop</a>.</li>
-            <li>اسحب ملف <strong>social_development_game.html</strong> وأفلته داخل الموقع؛ سيعطيك فوراً رابطاً عاماً حقيقياً (مثل: <code>https://sharif-quiz.tiiny.site</code>).</li>
-            <li>افتح ذلك الرابط العام من جهازك ◀ أنشئ الحصة ◀ انسخ رابط الطلاب المباشر وأرسله في <strong>دردشة Zoom</strong>!</li>
-          </ol>
+          <button onclick="saveAndDownloadConfiguredHTML()" class="w-full py-3 px-4 rounded-xl bg-saudi-dark hover:bg-saudi-deep text-white font-display font-extrabold text-xs sm:text-sm transition flex items-center justify-center gap-2 shadow">
+            <i class="fa-solid fa-download"></i>
+            <span>حفظ الإعدادات وتنزيل ملف index.html الجاهز للرفع</span>
+          </button>
         </div>
       </div>
     </div>
@@ -729,14 +584,14 @@
         <h3 id="modal-title" class="font-display font-extrabold text-lg">تأكيد العودة</h3>
       </div>
       <p id="modal-message" class="text-sm text-slate-600 mb-6 leading-relaxed">
-        هل تريد الخروج من الجلسة الحالية والعودة إلى الشاشة الرئيسية؟
+        هل تريد العودة إلى شاشة دخول الطالب الرئيسية؟
       </p>
       <div class="flex items-center justify-end gap-3">
         <button onclick="closeModal()" class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm font-bold transition">
           إلغاء
         </button>
         <button id="modal-confirm-btn" class="px-5 py-2 rounded-xl bg-saudi-dark hover:bg-saudi-deep text-white text-sm font-bold transition">
-          نعم، خروج
+          نعم، عودة
         </button>
       </div>
     </div>
@@ -747,7 +602,7 @@
     <p>منصة المسابقات التفاعلية لمادة الدراسات الاجتماعية (الصف الثالث المتوسط - المنهج السعودي) • إشراف <strong class="text-saudi-dark">الأستاذ شريف شعبان</strong></p>
   </footer>
 
-  <!-- ==================== FIREBASE & REAL-TIME MULTIPLAYER ENGINE ==================== -->
+  <!-- ==================== UNIFIED SESSION ENGINE (NO ROOM CODE NEEDED) ==================== -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
     import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
@@ -759,7 +614,8 @@
       updateDoc,
       deleteDoc,
       onSnapshot,
-      collection
+      collection,
+      getDocs
     } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
     /* --------------------------------------------------------------------------
@@ -789,9 +645,9 @@
         type: 'اختيار من متعدد',
         duration: 25,
         question: 'من أبرز منتجات التمويل الاجتماعي التي يقدمها بنك التنمية الاجتماعية لدعم الأسر والأرامل والمطلقات والشباب:',
-        options: ['منتجات (أهل) و (كنف) و (زواج)', 'حجز المواعيد الطبية', 'إصدار رخص البناء', 'تمويل المصانع الكبرى'],
+        options: ['منتجات (أهل) و (كنف) و (الزواج)', 'حجز المواعيد الطبية', 'إصدار رخص البناء', 'تمويل المصانع الكبرى'],
         correctIndex: 0,
-        explanation: 'يقدم بنك التنمية الاجتماعية منتجات تمويل اجتماعي ميسرة منها: (أهل) للأسرة، و(كنف) للأرامل والمطلقات، و(زواج) للشباب.'
+        explanation: 'يقدم بنك التنمية الاجتماعية منتجات تمويل اجتماعي ميسرة منها: (أهل) للأسرة، و(كنف) للأرامل والمطلقات، و(الزواج) للشباب.'
       },
       {
         stage: 'المرحلة 2: رعاية الفئات الخاصة والأسر',
@@ -809,7 +665,7 @@
         question: 'مركز أُسس لتقديم الاستشارات الاجتماعية والنفسية مجاناً عبر الهاتف (1919) لمعالجة المشكلات التي يعانيها بعض أفراد الأسر:',
         options: ['مركز الإرشاد الأسري', 'مركز الملك سلمان للإغاثة', 'المركز الوطني للوثائق', 'مركز المعلومات الوطني'],
         correctIndex: 0,
-        explanation: 'مركز الإرشاد الأسري يقدم الاستشارات الاجتماعية والنفسية مجاناً عبر الهاتف لمساعدة أفراد الأسر.'
+        explanation: 'مركز الإرشاد الأسري يقدم الاستشارات الاجتماعية والنفسية مجاناً عبر الهاتف (1919) لمساعدة أفراد الأسر.'
       },
       {
         stage: 'المرحلة 2: رعاية الفئات الخاصة والأسر',
@@ -870,23 +726,40 @@
         type: 'موقف تطبيقي',
         duration: 30,
         question: 'يواجه أحد أرباب الأسر تحديات تربوية ونفسية في التعامل مع أبنائه ويبحث عن جهة سرية تقدم له المشورة المجانية عبر الهاتف؛ ما الحل الأنسب؟',
-        options: ['التواصل مع مركز الإرشاد الأسري', 'التقدم بطلب للبنك الصناعي', 'مراجعة إدارة الجمارك', 'التواصل مع هيئة الأرصاد'],
+        options: ['التواصل مع مركز الإرشاد الأسري (1919)', 'التقدم بطلب للبنك الصناعي', 'مراجعة إدارة الجمارك', 'التواصل مع هيئة الأرصاد'],
         correctIndex: 0,
-        explanation: 'مركز الإرشاد الأسري يوفر خدمة الاستشارات الهاتفية المجانية لمعالجة المشكلات الأسرية والنفسية.'
+        explanation: 'مركز الإرشاد الأسري يوفر خدمة الاستشارات الهاتفية المجانية عبر الرقم (1919) لمعالجة المشكلات الأسرية والنفسية.'
       }
     ];
 
     /* --------------------------------------------------------------------------
-       2. FIREBASE INITIALIZATION & AUTHENTICATION (Strict Rule Compliance)
+       2. UNIFIED LIVE SESSION STORAGE (Firebase + BroadcastChannel/localStorage)
     -------------------------------------------------------------------------- */
-    // Embedded Firebase Config placeholder (auto-populated when exported via Cloud Setup)
     const EMBEDDED_FIREBASE_CONFIG = null;
+    const UNIFIED_ROOM_ID = 'SHERIF_SOCIAL_DEV_LIVE_CLASS';
+    const LOCAL_CHANNEL_NAME = 'sherif_social_dev_channel_v1';
+    const LOCAL_STATE_KEY = 'sherif_social_dev_unified_state_v1';
 
-    const appId = typeof __app_id !== 'undefined' ? __app_id : 'social-dev-quiz-app';
+    const appId = typeof __app_id !== 'undefined' ? __app_id : 'social-dev-unified-app';
     let db = null;
     let auth = null;
     let currentUser = null;
     let useLocalFallback = false;
+    let broadcastChannel = null;
+
+    function getDefaultRoomObject() {
+      return {
+        roomId: UNIFIED_ROOM_ID,
+        teacherName: 'الأستاذ شريف شعبان',
+        status: 'lobby', // 'lobby' | 'playing' | 'finished'
+        currentQuestionIndex: 0,
+        questionRevealed: false,
+        timerPaused: false,
+        timeLeft: QUESTIONS_BANK[0].duration,
+        questionStartedAt: Date.now(),
+        updatedAt: Date.now()
+      };
+    }
 
     function getActiveFirebaseConfig() {
       if (typeof __firebase_config !== 'undefined' && __firebase_config) {
@@ -898,11 +771,11 @@
       return null;
     }
 
-    async function initFirebase() {
+    async function initSyncEngine() {
       try {
         const firebaseConfig = getActiveFirebaseConfig();
         if (!firebaseConfig) {
-          throw new Error('Firebase config unavailable, using local preview sync');
+          throw new Error('Using instant local/tab broadcast sync');
         }
         const app = initializeApp(firebaseConfig);
         db = getFirestore(app);
@@ -925,12 +798,65 @@
           cloudBadge.className = 'text-[11px] font-extrabold bg-emerald-100 text-emerald-900 px-2.5 py-0.5 rounded-full';
         }
       } catch (err) {
-        console.warn('Running in standalone local mode:', err);
         useLocalFallback = true;
-        currentUser = { uid: 'local-' + crypto.randomUUID() };
+        let savedUid = sessionStorage.getItem('sherif_student_uid');
+        if (!savedUid) {
+          savedUid = 'stu-' + crypto.randomUUID();
+          sessionStorage.setItem('sherif_student_uid', savedUid);
+        }
+        currentUser = { uid: savedUid };
+
         const statusText = document.getElementById('connection-status-text');
-        if (statusText) statusText.textContent = 'وضع المعاينة المحلية';
+        if (statusText) statusText.textContent = 'متصل مباشرة';
+
+        initLocalBroadcastSync();
       }
+    }
+
+    function readLocalStore() {
+      try {
+        const raw = localStorage.getItem(LOCAL_STATE_KEY);
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          if (parsed && parsed.room) {
+            return {
+              room: parsed.room,
+              students: parsed.students || {}
+            };
+          }
+        }
+      } catch (e) {}
+      const fresh = { room: getDefaultRoomObject(), students: {} };
+      writeLocalStore(fresh, false);
+      return fresh;
+    }
+
+    function writeLocalStore(storeObj, notify = true) {
+      try {
+        localStorage.setItem(LOCAL_STATE_KEY, JSON.stringify(storeObj));
+      } catch (e) {}
+      if (notify && broadcastChannel) {
+        broadcastChannel.postMessage({ type: 'SYNC_UPDATE', payload: storeObj });
+      }
+    }
+
+    function initLocalBroadcastSync() {
+      if ('BroadcastChannel' in window) {
+        broadcastChannel = new BroadcastChannel(LOCAL_CHANNEL_NAME);
+        broadcastChannel.onmessage = (event) => {
+          if (event.data && event.data.type === 'SYNC_UPDATE') {
+            applyUnifiedStateSnapshot(event.data.payload.room, event.data.payload.students || {});
+          }
+        };
+      }
+      window.addEventListener('storage', (e) => {
+        if (e.key === LOCAL_STATE_KEY && e.newValue) {
+          try {
+            const parsed = JSON.parse(e.newValue);
+            applyUnifiedStateSnapshot(parsed.room, parsed.students || {});
+          } catch (err) {}
+        }
+      });
     }
 
     /* --------------------------------------------------------------------------
@@ -991,6 +917,9 @@
       } else if (effect === 'wrong') {
         playTone(260, 'sawtooth', 0.18, 0);
         playTone(195, 'sawtooth', 0.28, 0.14);
+      } else if (effect === 'timeup') {
+        playTone(440, 'square', 0.15, 0);
+        playTone(330, 'square', 0.25, 0.16);
       } else if (effect === 'win') {
         [523.25, 659.25, 783.99, 1046.50, 783.99, 1046.50].forEach((n, idx) =>
           playTone(n, 'triangle', 0.2, idx * 0.12)
@@ -999,14 +928,12 @@
     }
 
     /* --------------------------------------------------------------------------
-       4. SESSION STATE & REAL-TIME LISTENERS
+       4. APPLICATION STATE & REAL-TIME LISTENERS
     -------------------------------------------------------------------------- */
     let appState = {
       role: null, // 'teacher' | 'student'
-      roomCode: null,
       studentId: null,
       studentName: '',
-      studentClass: '',
       roomData: null,
       studentsList: [],
       unsubRoom: null,
@@ -1016,222 +943,115 @@
       hasSimulatedDemo: false
     };
 
-    const localMemoryStore = {
-      room: null,
-      students: {}
-    };
+    function getUnifiedRoomDocRef() {
+      return doc(db, 'artifacts', appId, 'public', 'data', 'unified_quiz_rooms', UNIFIED_ROOM_ID);
+    }
 
-    function generateRoomCode() {
-      const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
-      let code = '';
-      for (let i = 0; i < 6; i++) {
-        code += chars.charAt(Math.floor(Math.random() * chars.length));
+    function getUnifiedStudentsColRef() {
+      return collection(db, 'artifacts', appId, 'public', 'data', 'unified_quiz_students');
+    }
+
+    function getUnifiedStudentDocRef(uid) {
+      return doc(db, 'artifacts', appId, 'public', 'data', 'unified_quiz_students', uid);
+    }
+
+    function applyUnifiedStateSnapshot(newRoom, studentsMapOrArray) {
+      const prevRoom = appState.roomData;
+      appState.roomData = newRoom;
+
+      const list = Array.isArray(studentsMapOrArray)
+        ? [...studentsMapOrArray]
+        : Object.entries(studentsMapOrArray).map(([uid, val]) => ({ uid, ...val }));
+
+      list.sort((a, b) => {
+        if ((b.score || 0) !== (a.score || 0)) return (b.score || 0) - (a.score || 0);
+        return (a.totalResponseTimeMs || 999999) - (b.totalResponseTimeMs || 999999);
+      });
+
+      if (appState.role === 'teacher' && list.length > appState.lastKnownStudentCount) {
+        playSoundEffect('join');
       }
-      return code;
-    }
+      appState.lastKnownStudentCount = list.length;
+      appState.studentsList = list;
 
-    function getRoomDocRef(code) {
-      return doc(db, 'artifacts', appId, 'public', 'data', 'quiz_rooms', code);
-    }
-
-    function getStudentsColRef(code) {
-      return collection(db, 'artifacts', appId, 'public', 'data', `quiz_students_${code}`);
-    }
-
-    function getStudentDocRef(code, uid) {
-      return doc(db, 'artifacts', appId, 'public', 'data', `quiz_students_${code}`, uid);
-    }
-
-    function buildDirectStudentUrl(code) {
-      return `${window.location.origin}${window.location.pathname}?code=${code}`;
-    }
-
-    function isInternalSandboxedPreview() {
-      const href = window.location.href || '';
-      return (
-        window.location.protocol === 'blob:' ||
-        window.location.protocol === 'about:' ||
-        window.location.protocol === 'file:' ||
-        href.includes('usercontent.goog') ||
-        href.includes('webcontainer') ||
-        href.includes('localhost')
-      );
-    }
-
-    /* --------------------------------------------------------------------------
-       5. TEACHER SESSION CREATION, REJOIN & CONTROLS
-    -------------------------------------------------------------------------- */
-    window.createTeacherSession = async function () {
-      initAudio();
-      if (!currentUser) await initFirebase();
-
-      const btn = document.getElementById('btn-create-room');
-      btn.disabled = true;
-      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i><span>جاري تجهيز الحصة والرابط...</span>';
-
-      const code = generateRoomCode();
-      const initialRoom = {
-        roomCode: code,
-        teacherUid: currentUser.uid,
-        teacherName: 'الأستاذ شريف شعبان',
-        status: 'lobby', // 'lobby' | 'playing' | 'finished'
-        currentQuestionIndex: 0,
-        questionRevealed: false,
-        timerPaused: false,
-        timeLeft: QUESTIONS_BANK[0].duration,
-        questionStartedAt: Date.now(),
-        createdAt: Date.now()
-      };
-
-      try {
-        if (!useLocalFallback) {
-          await setDoc(getRoomDocRef(code), initialRoom);
-        } else {
-          localMemoryStore.room = initialRoom;
-          localMemoryStore.students = {};
+      if (appState.role === 'student' && prevRoom && newRoom) {
+        if (prevRoom.currentQuestionIndex !== newRoom.currentQuestionIndex) {
+          playSoundEffect('join');
         }
-
-        enterTeacherDashboard(code, initialRoom);
-        openShareLinkModal(true);
-      } catch (err) {
-        console.error('Error creating room:', err);
-        showToast('تعذر الاتصال بالخادم، يرجى المحاولة مرة أخرى.');
-      } finally {
-        btn.disabled = false;
-        btn.innerHTML = '<i class="fa-solid fa-plus-circle text-saudi-gold"></i><span>إنشاء حصة جديدة والحصول على الرابط</span>';
-      }
-    };
-
-    window.rejoinTeacherSession = async function () {
-      initAudio();
-      if (!currentUser) await initFirebase();
-
-      const code = document.getElementById('input-teacher-existing-code').value.trim().toUpperCase();
-      if (code.length < 4) {
-        showToast('يرجى إدخال رمز الحصة السابقة الصحيح');
-        return;
+        if (!prevRoom.questionRevealed && newRoom.questionRevealed) {
+          const me = list.find(s => s.uid === appState.studentId);
+          if (me && me.answers && me.answers[newRoom.currentQuestionIndex]) {
+            playSoundEffect(me.answers[newRoom.currentQuestionIndex].isCorrect ? 'correct' : 'wrong');
+          } else {
+            playSoundEffect('timeup');
+          }
+        }
+        if (prevRoom.status !== 'finished' && newRoom.status === 'finished') {
+          playSoundEffect('win');
+          launchConfetti();
+        }
       }
 
-      try {
-        let roomData = null;
-        if (!useLocalFallback) {
-          const snap = await getDoc(getRoomDocRef(code));
-          if (snap.exists()) roomData = snap.data();
-        } else if (localMemoryStore.room && localMemoryStore.room.roomCode === code) {
-          roomData = localMemoryStore.room;
-        }
-
-        if (!roomData) {
-          showToast('لم يتم العثور على حصة بهذا الرمز!');
-          return;
-        }
-
-        enterTeacherDashboard(code, roomData);
-        if (roomData.status === 'playing' && !roomData.timerPaused && !roomData.questionRevealed) {
-          startTeacherMasterTimer();
-        }
-        showToast(`تمت استعادة إدارة الحصة: ${code}`);
-      } catch (err) {
-        console.error('Rejoin error:', err);
-        showToast('حدث خطأ أثناء استعادة الحصة');
+      if (appState.role === 'teacher') {
+        renderTeacherUI();
+      } else if (appState.role === 'student') {
+        renderStudentUI();
       }
-    };
-
-    function enterTeacherDashboard(code, initialRoom) {
-      appState.role = 'teacher';
-      appState.roomCode = code;
-      appState.roomData = initialRoom;
-      appState.hasSimulatedDemo = false;
-
-      document.getElementById('screen-landing').classList.add('hidden');
-      document.getElementById('screen-teacher').classList.remove('hidden');
-      document.getElementById('btn-home').classList.remove('hidden');
-      document.getElementById('teacher-room-code').textContent = code;
-      document.getElementById('input-teacher-existing-code').value = code;
-
-      subscribeToRoomAndStudents(code);
     }
 
-    function subscribeToRoomAndStudents(code) {
+    async function subscribeToUnifiedSession() {
       cleanupSubscriptions();
 
       if (useLocalFallback) {
-        renderTeacherUI();
-        if (appState.role === 'student') renderStudentUI();
+        const store = readLocalStore();
+        applyUnifiedStateSnapshot(store.room, store.students);
         return;
       }
 
-      // 1. Listen to Room State Changes
-      appState.unsubRoom = onSnapshot(
-        getRoomDocRef(code),
-        (snap) => {
-          if (!snap.exists()) return;
-          const prevData = appState.roomData;
-          appState.roomData = snap.data();
+      // Ensure unified room doc exists on Firestore
+      const roomRef = getUnifiedRoomDocRef();
+      const snap = await getDoc(roomRef);
+      if (!snap.exists()) {
+        await setDoc(roomRef, getDefaultRoomObject());
+      }
 
-          if (appState.role === 'teacher') {
-            renderTeacherUI();
-          } else if (appState.role === 'student') {
-            if (prevData && prevData.currentQuestionIndex !== appState.roomData.currentQuestionIndex) {
-              playSoundEffect('join');
-            }
-            if (prevData && !prevData.questionRevealed && appState.roomData.questionRevealed) {
-              const me = appState.studentsList.find(s => s.uid === appState.studentId);
-              if (me && me.answers && me.answers[appState.roomData.currentQuestionIndex]) {
-                playSoundEffect(me.answers[appState.roomData.currentQuestionIndex].isCorrect ? 'correct' : 'wrong');
-              }
-            }
-            if (prevData && prevData.status !== 'finished' && appState.roomData.status === 'finished') {
-              playSoundEffect('win');
-              launchConfetti();
-            }
-            renderStudentUI();
-          }
-        },
-        (error) => {
-          console.error('Room listener error:', error);
-        }
-      );
+      appState.unsubRoom = onSnapshot(roomRef, (docSnap) => {
+        if (!docSnap.exists()) return;
+        applyUnifiedStateSnapshot(docSnap.data(), appState.studentsList);
+      });
 
-      // 2. Listen to Students Collection (Sort in JS per Rule 2)
-      appState.unsubStudents = onSnapshot(
-        getStudentsColRef(code),
-        (snapshot) => {
-          const list = [];
-          snapshot.forEach((docSnap) => {
-            list.push({ uid: docSnap.id, ...docSnap.data() });
-          });
-
-          list.sort((a, b) => {
-            if ((b.score || 0) !== (a.score || 0)) return (b.score || 0) - (a.score || 0);
-            return (a.totalResponseTimeMs || 999999) - (b.totalResponseTimeMs || 999999);
-          });
-
-          if (appState.role === 'teacher' && list.length > appState.lastKnownStudentCount) {
-            playSoundEffect('join');
-          }
-          appState.lastKnownStudentCount = list.length;
-          appState.studentsList = list;
-
-          if (appState.role === 'teacher') {
-            renderTeacherUI();
-          } else if (appState.role === 'student') {
-            renderStudentUI();
-          }
-        },
-        (error) => {
-          console.error('Students listener error:', error);
-        }
-      );
+      appState.unsubStudents = onSnapshot(getUnifiedStudentsColRef(), (querySnap) => {
+        const list = [];
+        querySnap.forEach((d) => list.push({ uid: d.id, ...d.data() }));
+        applyUnifiedStateSnapshot(appState.roomData, list);
+      });
     }
 
     /* --------------------------------------------------------------------------
-       6. TEACHER GAMEPLAY PACING & TIMER ENGINE
+       5. TEACHER DASHBOARD & GAMEPLAY CONTROLS
     -------------------------------------------------------------------------- */
+    window.enterTeacherDashboard = async function () {
+      initAudio();
+      if (!currentUser) await initSyncEngine();
+
+      appState.role = 'teacher';
+      document.getElementById('screen-landing').classList.add('hidden');
+      document.getElementById('screen-student').classList.add('hidden');
+      document.getElementById('screen-teacher').classList.remove('hidden');
+      document.getElementById('btn-teacher-access').classList.add('hidden');
+      document.getElementById('btn-home').classList.remove('hidden');
+
+      await subscribeToUnifiedSession();
+
+      if (appState.roomData && appState.roomData.status === 'playing' && !appState.roomData.timerPaused && !appState.roomData.questionRevealed) {
+        startTeacherMasterTimer();
+      }
+    };
+
     window.teacherStartGame = async function () {
       playSoundEffect('correct');
       const q0 = QUESTIONS_BANK[0];
-      await updateRoomState({
+      await updateUnifiedRoom({
         status: 'playing',
         currentQuestionIndex: 0,
         questionRevealed: false,
@@ -1249,13 +1069,13 @@
     window.teacherTogglePause = async function () {
       if (!appState.roomData) return;
       const nextPaused = !appState.roomData.timerPaused;
-      await updateRoomState({ timerPaused: nextPaused });
+      await updateUnifiedRoom({ timerPaused: nextPaused });
     };
 
     window.teacherRevealAnswer = async function () {
       if (!appState.roomData) return;
       playSoundEffect('correct');
-      await updateRoomState({ questionRevealed: true, timerPaused: true });
+      await updateUnifiedRoom({ questionRevealed: true, timerPaused: true });
     };
 
     window.teacherNextQuestion = async function () {
@@ -1268,7 +1088,7 @@
 
       playSoundEffect('join');
       const nextQ = QUESTIONS_BANK[nextIdx];
-      await updateRoomState({
+      await updateUnifiedRoom({
         currentQuestionIndex: nextIdx,
         questionRevealed: false,
         timerPaused: false,
@@ -1286,33 +1106,54 @@
       clearInterval(appState.localTimerInterval);
       playSoundEffect('win');
       launchConfetti();
-      await updateRoomState({
+      await updateUnifiedRoom({
         status: 'finished',
         questionRevealed: true,
         timerPaused: true
       });
     };
 
-    window.removeStudent = async function (studentUid) {
-      if (!appState.roomCode) return;
+    window.teacherResetSession = async function () {
+      clearInterval(appState.localTimerInterval);
+      appState.hasSimulatedDemo = false;
+      appState.lastKnownStudentCount = 0;
+
+      const freshRoom = getDefaultRoomObject();
       if (!useLocalFallback) {
-        await deleteDoc(getStudentDocRef(appState.roomCode, studentUid));
+        await setDoc(getUnifiedRoomDocRef(), freshRoom);
+        const snap = await getDocs(getUnifiedStudentsColRef());
+        for (const d of snap.docs) {
+          await deleteDoc(getUnifiedStudentDocRef(d.id));
+        }
       } else {
-        delete localMemoryStore.students[studentUid];
-        syncLocalFallback();
+        const freshStore = { room: freshRoom, students: {} };
+        writeLocalStore(freshStore, true);
+        applyUnifiedStateSnapshot(freshRoom, {});
+      }
+      showToast('تمت إعادة ضبط المسابقة ومسح البيانات السابقة بنجاح!');
+    };
+
+    window.removeStudent = async function (studentUid) {
+      if (!useLocalFallback) {
+        await deleteDoc(getUnifiedStudentDocRef(studentUid));
+      } else {
+        const store = readLocalStore();
+        delete store.students[studentUid];
+        writeLocalStore(store, true);
+        applyUnifiedStateSnapshot(store.room, store.students);
       }
       showToast('تم استبعاد الطالب من الجلسة');
     };
 
-    async function updateRoomState(patch) {
-      if (!appState.roomCode) return;
+    async function updateUnifiedRoom(patch) {
+      const updatedPatch = { ...patch, updatedAt: Date.now() };
       if (!useLocalFallback) {
-        await updateDoc(getRoomDocRef(appState.roomCode), patch);
+        await updateDoc(getUnifiedRoomDocRef(), updatedPatch);
       } else {
-        localMemoryStore.room = { ...localMemoryStore.room, ...patch };
-        appState.roomData = localMemoryStore.room;
-        renderTeacherUI();
-        if (appState.role === 'student') renderStudentUI();
+        const store = readLocalStore();
+        store.room = { ...store.room, ...updatedPatch };
+        writeLocalStore(store, true);
+        applyUnifiedStateSnapshot(store.room, store.students);
       }
     }
 
@@ -1325,50 +1166,60 @@
         const nextTime = Math.max(0, (room.timeLeft || 0) - 1);
         if (nextTime === 0) {
           clearInterval(appState.localTimerInterval);
-          await updateRoomState({ timeLeft: 0, questionRevealed: true, timerPaused: true });
+          playSoundEffect('timeup');
+          await updateUnifiedRoom({ timeLeft: 0, questionRevealed: true, timerPaused: true });
         } else {
-          await updateRoomState({ timeLeft: nextTime });
+          await updateUnifiedRoom({ timeLeft: nextTime });
         }
       }, 1000);
     }
 
     /* --------------------------------------------------------------------------
-       7. DEMO STUDENTS SIMULATOR
+       6. DEMO STUDENTS SIMULATOR
     -------------------------------------------------------------------------- */
     window.simulateDemoStudents = async function () {
-      if (!appState.roomCode) return;
       playSoundEffect('join');
 
       const demoRoster = [
-        { uid: 'demo-1', name: 'عبدالعزيز محمد القحطاني', className: '3/أ' },
-        { uid: 'demo-2', name: 'فيصل خالد العتيبي', className: '3/أ' },
-        { uid: 'demo-3', name: 'سعود عبدالله الدوسري', className: '3/ب' },
-        { uid: 'demo-4', name: 'تركي ناصر الحربي', className: '3/ب' },
-        { uid: 'demo-5', name: 'ريان سلطان الغامدي', className: '3/أ' }
+        { uid: 'demo-1', name: 'عبدالعزيز محمد القحطاني' },
+        { uid: 'demo-2', name: 'فيصل خالد العتيبي' },
+        { uid: 'demo-3', name: 'سعود عبدالله الدوسري' },
+        { uid: 'demo-4', name: 'تركي ناصر الحربي' },
+        { uid: 'demo-5', name: 'ريان سلطان الغامدي' }
       ];
 
-      for (const s of demoRoster) {
-        const payload = {
-          uid: s.uid,
-          name: s.name,
-          className: s.className,
-          score: 0,
-          correctCount: 0,
-          streak: 0,
-          totalResponseTimeMs: 0,
-          answers: {},
-          joinedAt: Date.now()
-        };
-
-        if (!useLocalFallback) {
-          await setDoc(getStudentDocRef(appState.roomCode, s.uid), payload);
-        } else {
-          localMemoryStore.students[s.uid] = payload;
+      if (!useLocalFallback) {
+        for (const s of demoRoster) {
+          await setDoc(getUnifiedStudentDocRef(s.uid), {
+            uid: s.uid,
+            name: s.name,
+            score: 0,
+            correctCount: 0,
+            streak: 0,
+            totalResponseTimeMs: 0,
+            answers: {},
+            joinedAt: Date.now()
+          });
         }
+      } else {
+        const store = readLocalStore();
+        for (const s of demoRoster) {
+          store.students[s.uid] = {
+            uid: s.uid,
+            name: s.name,
+            score: 0,
+            correctCount: 0,
+            streak: 0,
+            totalResponseTimeMs: 0,
+            answers: {},
+            joinedAt: Date.now()
+          };
+        }
+        writeLocalStore(store, true);
+        applyUnifiedStateSnapshot(store.room, store.students);
       }
 
       appState.hasSimulatedDemo = true;
-      if (useLocalFallback) syncLocalFallback();
       showToast('تمت إضافة 5 طلاب تجريبيين للمحاكاة!');
 
       if (appState.roomData && appState.roomData.status === 'playing') {
@@ -1400,7 +1251,7 @@
     }
 
     /* --------------------------------------------------------------------------
-       8. RENDER TEACHER CONTROL PANEL & LIVE MONITORING TABLE
+       7. RENDER TEACHER CONTROL PANEL & LIVE MONITORING TABLE
     -------------------------------------------------------------------------- */
     function renderTeacherUI() {
       const room = appState.roomData;
@@ -1431,8 +1282,8 @@
         grid.innerHTML = `
           <div class="col-span-full flex flex-col items-center justify-center py-10 text-slate-400 border-2 border-dashed border-slate-200 rounded-2xl">
             <i class="fa-solid fa-users text-4xl mb-2 text-slate-300"></i>
-            <p class="font-bold text-sm">في انتظار انضمام الطلاب عبر الرابط المباشر أو رمز الحصة (${appState.roomCode})...</p>
-            <p class="text-xs mt-1">اضغط على «عرض ونسخ رابط الدعوة» لإرساله للطلاب الآن</p>
+            <p class="font-bold text-sm">في انتظار دخول الطلاب بأسمائهم...</p>
+            <p class="text-xs mt-1">بمجرد أن يكتب الطالب اسمه ويضغط «ابدأ المسابقة الآن» سيظهر اسمه هنا فوراً</p>
           </div>
         `;
         return;
@@ -1446,7 +1297,7 @@
             </div>
             <div class="truncate">
               <span class="font-bold text-sm text-slate-900 block truncate">${escapeHTML(s.name)}</span>
-              <span class="text-[11px] font-bold text-saudi-primary">الفصل: ${escapeHTML(s.className || '3/أ')}</span>
+              <span class="text-[11px] font-bold text-saudi-primary">جاهز للمنافسة</span>
             </div>
           </div>
           <button onclick="removeStudent('${s.uid}')" class="text-slate-400 hover:text-rose-600 p-1.5 rounded-lg transition" title="حذف الطالب">
@@ -1525,7 +1376,7 @@
 
           const statusHtml = ansObj
             ? `<span class="inline-flex items-center gap-1 bg-emerald-50 text-emerald-800 border border-emerald-200 px-2.5 py-0.5 rounded-full text-[11px] font-extrabold"><i class="fa-solid fa-check"></i> أجاب</span>`
-            : `<span class="inline-flex items-center gap-1 bg-amber-50 text-amber-800 border border-amber-200 px-2.5 py-0.5 rounded-full text-[11px] font-bold animate-pulse"><i class="fa-solid fa-spinner fa-spin"></i> جاري التفكير...</span>`;
+            : `<span class="inline-flex items-center gap-1 bg-amber-50 text-amber-800 border border-amber-200 px-2.5 py-0.5 rounded-full text-[11px] font-bold animate-pulse"><i class="fa-solid fa-spinner fa-spin"></i> يجيب الآن...</span>`;
 
           const selectedText = ansObj
             ? `<span class="font-bold text-slate-800">${escapeHTML(q.options[ansObj.selectedIndex] || '-')}</span>`
@@ -1543,10 +1394,7 @@
 
           return `
             <tr class="hover:bg-slate-50/80 transition">
-              <td class="py-3 px-3">
-                <div class="font-bold text-slate-900">${escapeHTML(s.name)}</div>
-                <div class="text-[11px] text-slate-500">فصل ${escapeHTML(s.className || '3/أ')}</div>
-              </td>
+              <td class="py-3 px-3 font-bold text-slate-900">${escapeHTML(s.name)}</td>
               <td class="py-3 px-3">${statusHtml}</td>
               <td class="py-3 px-3">${selectedText}</td>
               <td class="py-3 px-3 text-center">${evalHtml}</td>
@@ -1584,7 +1432,7 @@
                     <span class="font-bold text-sm text-slate-900 truncate">${escapeHTML(s.name)}</span>
                     ${(s.streak || 0) >= 2 ? `<span class="text-[10px] bg-orange-100 text-orange-800 px-1.5 py-0.5 rounded-md font-extrabold shrink-0"><i class="fa-solid fa-fire text-orange-500"></i> ${s.streak}</span>` : ''}
                   </div>
-                  <span class="text-[11px] text-slate-500">صحيحة: <strong>${s.correctCount || 0}</strong> • فصل ${escapeHTML(s.className || '3/أ')}</span>
+                  <span class="text-[11px] text-slate-500">إجابات صحيحة: <strong>${s.correctCount || 0}</strong></span>
                 </div>
               </div>
               <div class="text-left shrink-0 mr-2">
@@ -1598,53 +1446,27 @@
     }
 
     /* --------------------------------------------------------------------------
-       9. STUDENT SESSION JOIN, ANSWER SUBMISSION & LIVE VIEW
+       8. STUDENT SESSION JOIN, ANSWER SUBMISSION & LIVE VIEW
     -------------------------------------------------------------------------- */
     window.joinStudentSession = async function () {
       initAudio();
-      if (!currentUser) await initFirebase();
+      if (!currentUser) await initSyncEngine();
 
-      const code = document.getElementById('input-room-code').value.trim().toUpperCase();
       const name = document.getElementById('input-student-name').value.trim();
-      const className = document.getElementById('input-student-class').value.trim() || '3/أ';
-
-      if (code.length < 4) {
-        showToast('يرجى إدخال رمز الحصة الصحيح أولاً');
-        return;
-      }
       if (!name) {
-        showToast('يرجى كتابة اسمك الثلاثي للمشاركة');
+        showToast('يرجى كتابة اسمك الثلاثي أولاً للمشاركة');
+        document.getElementById('input-student-name').focus();
         return;
       }
 
       const btn = document.getElementById('btn-join-room');
       btn.disabled = true;
-      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i><span>جاري الانضمام...</span>';
+      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i><span>جاري الدخول للمسابقة...</span>';
 
       try {
-        let roomExists = false;
-        let initialRoom = null;
-
-        if (!useLocalFallback) {
-          const roomSnap = await getDoc(getRoomDocRef(code));
-          if (roomSnap.exists()) {
-            roomExists = true;
-            initialRoom = roomSnap.data();
-          }
-        } else if (localMemoryStore.room && localMemoryStore.room.roomCode === code) {
-          roomExists = true;
-          initialRoom = localMemoryStore.room;
-        }
-
-        if (!roomExists) {
-          showToast('رمز الحصة غير صحيح أو لم تبدأ الحصة بعد!');
-          return;
-        }
-
         const studentPayload = {
           uid: currentUser.uid,
           name: name,
-          className: className,
           score: 0,
           correctCount: 0,
           streak: 0,
@@ -1654,34 +1476,30 @@
         };
 
         if (!useLocalFallback) {
-          await setDoc(getStudentDocRef(code, currentUser.uid), studentPayload, { merge: true });
+          await setDoc(getUnifiedStudentDocRef(currentUser.uid), studentPayload, { merge: true });
         } else {
-          localMemoryStore.students[currentUser.uid] = studentPayload;
+          const store = readLocalStore();
+          store.students[currentUser.uid] = studentPayload;
+          writeLocalStore(store, true);
         }
 
         appState.role = 'student';
-        appState.roomCode = code;
         appState.studentId = currentUser.uid;
         appState.studentName = name;
-        appState.studentClass = className;
-        appState.roomData = initialRoom;
 
         playSoundEffect('join');
         document.getElementById('screen-landing').classList.add('hidden');
         document.getElementById('screen-student').classList.remove('hidden');
         document.getElementById('btn-home').classList.remove('hidden');
-
         document.getElementById('s-student-name').textContent = name;
-        document.getElementById('s-room-code').textContent = code;
-        document.getElementById('s-student-class').textContent = className;
 
-        subscribeToRoomAndStudents(code);
+        await subscribeToUnifiedSession();
       } catch (err) {
         console.error('Join error:', err);
-        showToast('حدث خطأ أثناء الانضمام، حاول مرة أخرى');
+        showToast('حدث خطأ أثناء الدخول، حاول مرة أخرى');
       } finally {
         btn.disabled = false;
-        btn.innerHTML = '<span>انضمام إلى الحصة الآن</span><i class="fa-solid fa-arrow-left"></i>';
+        btn.innerHTML = '<span>ابدأ المسابقة الآن</span><i class="fa-solid fa-arrow-left text-saudi-gold"></i>';
       }
     };
 
@@ -1726,10 +1544,12 @@
       };
 
       if (!useLocalFallback) {
-        await updateDoc(getStudentDocRef(appState.roomCode, studentObj.uid), updatedFields);
+        await updateDoc(getUnifiedStudentDocRef(studentObj.uid), updatedFields);
       } else {
-        localMemoryStore.students[studentObj.uid] = { ...studentObj, ...updatedFields };
-        syncLocalFallback();
+        const store = readLocalStore();
+        store.students[studentObj.uid] = { ...studentObj, ...updatedFields };
+        writeLocalStore(store, true);
+        applyUnifiedStateSnapshot(store.room, store.students);
       }
     }
 
@@ -1867,51 +1687,9 @@
       }
     }
 
-    function syncLocalFallback() {
-      const list = Object.values(localMemoryStore.students);
-      list.sort((a, b) => (b.score || 0) - (a.score || 0));
-      appState.studentsList = list;
-      if (appState.role === 'teacher') renderTeacherUI();
-      if (appState.role === 'student') renderStudentUI();
-    }
-
     /* --------------------------------------------------------------------------
-       10. DIRECT SHARE LINK MODAL, CSV EXPORT & HELPERS
+       9. CLOUD CONFIG EXPORT, CSV EXPORT & HELPERS
     -------------------------------------------------------------------------- */
-    window.openShareLinkModal = function (autoCopy = false) {
-      if (!appState.roomCode) return;
-      const directUrl = buildDirectStudentUrl(appState.roomCode);
-      const inviteMsg = `أبنائي طلاب الصف الثالث المتوسط، أدعوكم للمشاركة في مسابقة «التنمية الاجتماعية» التفاعلية بإشراف الأستاذ شريف شعبان.\n🔗 رابط الدخول المباشر:\n${directUrl}\n🔑 رمز الحصة: ${appState.roomCode}`;
-
-      document.getElementById('modal-share-code').textContent = appState.roomCode;
-      document.getElementById('modal-share-url-input').value = directUrl;
-      document.getElementById('modal-share-message').value = inviteMsg;
-
-      const warnBox = document.getElementById('modal-local-preview-warning');
-      if (warnBox) {
-        if (isInternalSandboxedPreview() || useLocalFallback) {
-          warnBox.classList.remove('hidden');
-        } else {
-          warnBox.classList.add('hidden');
-        }
-      }
-
-      const modal = document.getElementById('share-link-modal');
-      modal.classList.remove('hidden');
-      modal.classList.add('flex');
-
-      if (autoCopy && !isInternalSandboxedPreview() && !useLocalFallback) {
-        copyTextFallback(directUrl);
-        showToast('تم إنشاء الحصة ونسخ رابط الطلاب المباشر!');
-      }
-    };
-
-    window.closeShareLinkModal = function () {
-      const modal = document.getElementById('share-link-modal');
-      modal.classList.add('hidden');
-      modal.classList.remove('flex');
-    };
-
     window.openCloudSetupModal = function () {
       const modal = document.getElementById('cloud-setup-modal');
       modal.classList.remove('hidden');
@@ -1930,7 +1708,6 @@
 
       if (rawInput) {
         try {
-          // Allow pasting either pure JSON or JS object snippet
           const jsonCandidate = rawInput
             .replace(/const\s+firebaseConfig\s*=\s*/i, '')
             .replace(/;+\s*$/, '')
@@ -1958,45 +1735,16 @@
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = 'social_development_game.html';
+      a.download = 'index.html';
       a.click();
       URL.revokeObjectURL(url);
 
       showToast(
         parsedConfig
-          ? 'تم دمج إعدادات السحابة وتنزيل ملف اللعبة الجاهز للرفع!'
-          : 'تم تنزيل ملف اللعبة! ارفعه على Tiiny.host للحصول على رابط عام'
+          ? 'تم دمج إعدادات السحابة وتنزيل ملف index.html الجاهز للرفع!'
+          : 'تم تنزيل ملف index.html!'
       );
     };
-
-    window.copyInviteLinkFromModal = function () {
-      const url = document.getElementById('modal-share-url-input').value;
-      copyTextFallback(url);
-      showToast('تم نسخ رابط دخول الطلاب المباشر!');
-    };
-
-    window.copyFullInviteMessage = function () {
-      const msg = document.getElementById('modal-share-message').value;
-      copyTextFallback(msg);
-      showToast('تم نسخ رسالة الدعوة كاملة مع الرابط!');
-    };
-
-    window.copyRoomCode = function () {
-      if (!appState.roomCode) return;
-      copyTextFallback(appState.roomCode);
-      showToast(`تم نسخ رمز الحصة: ${appState.roomCode}`);
-    };
-
-    function copyTextFallback(text) {
-      const tempTextarea = document.createElement('textarea');
-      tempTextarea.value = text;
-      tempTextarea.style.position = 'fixed';
-      tempTextarea.style.opacity = '0';
-      document.body.appendChild(tempTextarea);
-      tempTextarea.select();
-      document.execCommand('copy');
-      document.body.removeChild(tempTextarea);
-    }
 
     window.exportResultsCSV = function () {
       const students = appState.studentsList;
@@ -2005,16 +1753,16 @@
         return;
       }
 
-      let csv = '\uFEFFالترتيب,اسم الطالب,الفصل,مجموع النقاط,الإجابات الصحيحة,إجمالي الأسئلة\n';
+      let csv = '\uFEFFالترتيب,اسم الطالب,مجموع النقاط,الإجابات الصحيحة,إجمالي الأسئلة\n';
       students.forEach((s, idx) => {
-        csv += `${idx + 1},"${s.name}","${s.className || '3/أ'}",${s.score || 0},${s.correctCount || 0},${QUESTIONS_BANK.length}\n`;
+        csv += `${idx + 1},"${s.name}",${s.score || 0},${s.correctCount || 0},${QUESTIONS_BANK.length}\n`;
       });
 
       const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = `نتائج_التنمية_الاجتماعية_${appState.roomCode || 'الحصة'}.csv`;
+      a.download = 'نتائج_مسابقة_التنمية_الاجتماعية.csv';
       a.click();
       URL.revokeObjectURL(url);
       showToast('تم تصدير ملف نتائج الطلاب (CSV) بنجاح!');
@@ -2038,10 +1786,10 @@
         closeModal();
         cleanupSubscriptions();
         appState.role = null;
-        appState.roomCode = null;
         document.getElementById('screen-teacher').classList.add('hidden');
         document.getElementById('screen-student').classList.add('hidden');
         document.getElementById('btn-home').classList.add('hidden');
+        document.getElementById('btn-teacher-access').classList.remove('hidden');
         document.getElementById('screen-landing').classList.remove('hidden');
       };
     };
@@ -2106,21 +1854,9 @@
       animateConfetti();
     }
 
-    // Boot Application & Auto-fill ?code=XXXXXX or ?join=XXXXXX
     window.addEventListener('DOMContentLoaded', async () => {
-      await initFirebase();
-      const params = new URLSearchParams(window.location.search);
-      const sharedCode = params.get('code') || params.get('join');
-      if (sharedCode) {
-        const cleanCode = sharedCode.trim().toUpperCase();
-        const codeInput = document.getElementById('input-room-code');
-        codeInput.value = cleanCode;
-        codeInput.classList.add('border-saudi-dark', 'bg-saudi-soft/40');
-        const subtitle = document.getElementById('student-join-subtitle');
-        if (subtitle) {
-          subtitle.innerHTML = `تم تعبئة رمز الحصة (<strong class="text-saudi-dark">${escapeHTML(cleanCode)}</strong>) تلقائياً! اكتب اسمك الثلاثي وفصلك ثم اضغط على «انضمام إلى الحصة الآن».`;
-        }
-      }
+      await initSyncEngine();
+      document.getElementById('input-student-name').focus();
     });
   </script>
 </body>
